@@ -6,6 +6,10 @@
 
 import random, sys
 
+# 40,000 lines of Shakespeare from a variety of Shakespeare's plays.
+# Source: https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt
+# Edited by Julian Delsi
+# Speakers are now one word, prefixed by a '%', for easy parsing
 with open("input.txt") as file:
 	text = file.read().split()
 
