@@ -58,21 +58,26 @@ def weighted_index(table: dict[str, float]) -> str:
 	return "unreachable!"
 
 
-fill_transition_tables(words)
+if __name__ == "__main__":
+	fill_transition_tables(words)
+	if(len(sys.argv) > 1):
+		for check in sys.argv[1:]:
+			if(check in words):
+				print(check, dict(reversed(sorted(words[check].items(), key=lambda item: item[1]))))
+				# print(check, dict(sorted(words[check].items())))
+			else:
+				print(check, "not in words")
+	else:
+		print("Generating sentence...")
+		start_word = random.choice(list(words))
+		sentence = [start_word]
 
-# check = "proceed"
-# if(check in words):
-# 	print(check, dict(reversed(sorted(words[check].items(), key=lambda item: item[1]))))
-# 	print("sum", sum([freq for freq in words[check].values()]))
-# else:
-# 	print(check, "not in words")
+		for i in range(20):
+			sentence.append(weighted_index(words[sentence[i]]))
 
-print("Generating sentence...")
-start_word = random.choice(list(words))
-sentence = [start_word]
+		print(' '.join(sentence))
 
-for i in range(20):
-	sentence.append(weighted_index(words[sentence[i]]))
 
-print(' '.join(sentence))
+
+
 
