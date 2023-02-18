@@ -57,16 +57,18 @@ def weighted_index(table: dict[str, float]) -> str:
 
 	return "unreachable!"
 
+def lookup_word(word: str):
+	if(word in words):
+		print(word, dict(reversed(sorted(words[word].items(), key=lambda item: item[1]))))
+		# print(word, dict(sorted(words[word].items())))
+	else:
+		print(word, "not in words")
 
 if __name__ == "__main__":
 	fill_transition_tables(words)
 	if(len(sys.argv) > 1):
-		for check in sys.argv[1:]:
-			if(check in words):
-				print(check, dict(reversed(sorted(words[check].items(), key=lambda item: item[1]))))
-				# print(check, dict(sorted(words[check].items())))
-			else:
-				print(check, "not in words")
+		for arg in sys.argv[1:]:
+			lookup_word(arg)
 	else:
 		print("Generating sentence...")
 		start_word = random.choice(list(words))
